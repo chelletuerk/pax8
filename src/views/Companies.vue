@@ -7,6 +7,10 @@
         <li>Company Domain: {{ company.domain }}</li>
         <li>Company # of Employees: {{ company.numberOfEmployees }}</li>
         <li>Company Suscriptions/Employee: {{ company.subscriptionsPerEmployee }}</li>
+        <button @click="toggleEdit(company.id)" type="button" name="edit-button">Edit Company Info</button><br><br>
+        <div  v-if="toggleEdit(company.id)">
+          Hello
+        </div>
       </ul>
   </div>
 </template>
@@ -16,7 +20,20 @@
 import CompanyService from '../services/CompanyService'
 
 export default {
+    data() {
+      return {
+        currentEdit: 0,
+      }
+    },
     methods: {
+      editable(id) {
+        // console.log(this.currentEdit)
+        return id === this.currentEdit
+      },
+      toggleEdit(id) {
+        this.currentEdit = id
+        return this.editable(this.currentEdit)
+      },
     //   getCompanyById(id = 0) {
     //     CompanyService.getById(id)
     //     .then(data => {
