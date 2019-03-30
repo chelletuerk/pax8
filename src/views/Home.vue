@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h1>This is the home page</h1><br><br>
     <router-link
-      class="button is-outlined is-info is-small"
+      class="button is-outlined is-danger is-info is-small"
       :to="{ path: '/companies' }"
-    >Go to Companies Page
-  </router-link><br>
+    >
+      Go to Companies Page
+  </router-link><br><br>
+  <h1>This is the home page</h1>
   </div>
 </template>
 

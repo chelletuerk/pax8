@@ -1,7 +1,7 @@
 <template>
   <div class="companies">
     <router-link
-      class="button is-outlined is-info is-small"
+      class="button is-outlined is-danger is-info is-small"
       :to="{ path: '/' }"
     >Go to Home Page</router-link><br><br><br>
     <strong><u><h1 style="font-size: 30px">Company List</h1></u></strong><br>
