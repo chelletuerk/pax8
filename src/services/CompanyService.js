@@ -38,7 +38,15 @@ function getById(id) {
   return Promise.resolve(company)
 }
 
+function updateCompany(id, options = {}) {
+  getById(id)
+    .then((company) => {
+      Object.assign(company, options)
+    })
+}
+
 export default {
   getAll,
   getById,
+  updateCompany,
 }
