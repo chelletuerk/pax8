@@ -29,20 +29,6 @@ export default {
       currentEditId: 0,
     }
   },
-  methods: {
-    //toggle edit functionality to direct to company page for udating
-    toggleEdit(id) {
-      if (this.currentEditId === id) {
-        // this.currentEditId = 0
-
-        //return id === this.currentEditId
-      }
-
-      // this.currentEditId = id
-      //
-      // return id === this.currentEditId
-    },
-  },
   created() {
     CompanyService.getAll()
       .then((data) => {
