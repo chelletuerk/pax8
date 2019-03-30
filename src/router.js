@@ -1,9 +1,11 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from './views/Home.vue';
-import Companies from './views/Companies.vue';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Home from './views/Home.vue'
+import Companies from './views/Companies.vue'
+import Company from './views/Company.vue'
 
-Vue.use(Router);
+
+Vue.use(Router)
 
 export default new Router({
   routes: [
@@ -16,6 +18,12 @@ export default new Router({
       path: '/companies',
       name: 'companies',
       component: Companies,
+    },
+    {
+      path: '/company/:id',
+      name: 'company',
+      component: Company,
+      props: true,
     },
   ],
 });
