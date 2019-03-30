@@ -1,17 +1,3 @@
-export default {
-  getAll,
-  getById,
-};
-
-function getAll() {
-  return Promise.resolve(fakeCompanies);
-}
-
-function getById(id) {
-  const company = fakeCompanies.find(company => company.id === id);
-  return Promise.resolve(company);
-}
-
 const fakeCompanies = [
   {
     id: 1,
@@ -41,4 +27,18 @@ const fakeCompanies = [
     numberOfEmployees: 256,
     subscriptionsPerEmployee: 2,
   },
-];
+]
+
+function getAll() {
+  return Promise.resolve(fakeCompanies)
+}
+
+function getById(id) {
+  const company = fakeCompanies.find(comp => comp.id === id)
+  return Promise.resolve(company)
+}
+
+export default {
+  getAll,
+  getById,
+}
