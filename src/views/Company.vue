@@ -1,5 +1,9 @@
 <template>
   <div class="company">
+    <div v-if="saved" class="notification is-primary">
+      <button class="delete" @click="closeAlert"></button>
+      You have succesfully updated {{ companyName }}!
+    </div>
     <div>
       Company Name:
       <input v-model="companyName" />
@@ -29,6 +33,7 @@ export default {
   props: ['id'],
   data() {
     return {
+      saved: false,
       company: {
         name: '',
         domain: '',
@@ -54,8 +59,14 @@ export default {
       })
   },
   methods: {
+    closeAlert() {
+      this.saved = false
+    },
+
      //mutate orginal object to reflect new changes on 'save' click
+     //created flag for opening/closing save alert
       editCompanyProperties() {
+      this.saved = true
       CompanyService.updateCompany(this.company.id, {
         name: this.companyName,
         domain: this.companyDomain,
