@@ -4,6 +4,12 @@
       <button class="delete" @click="closeAlert"></button>
       You have succesfully updated {{ companyName }}!
     </div>
+    <router-link
+      class="button is-outlined is-danger is-small"
+      :to="{ path: '/companies' }"
+    >
+      Back to Companies
+    </router-link><br><br>
     <div>
       Company Name:
       <input v-model="companyName" />
