@@ -1,16 +1,19 @@
 <template>
   <div class="companies">
+
     <strong><u><h1 style="font-size: 30px">Company List</h1></u></strong><br>
-    <ul class="company" v-for="company in companies">
+    <ul class="company" :key="company.id" v-for="company in companies">
         <strong><li>Company Name: {{ company.name }}</li></strong>
         <li>Company ID: {{ company.id }}</li>
         <li>Company Domain: {{ company.domain }}</li>
         <li>Company # of Employees: {{ company.numberOfEmployees }}</li>
         <li>Company Suscriptions/Employee: {{ company.subscriptionsPerEmployee }}</li>
-        <button @click="toggleEdit(company.id)" type="button" name="edit-button">Edit Company Info</button><br><br>
-        <div  v-if="toggleEdit(company.id)">
-          Hello
-        </div>
+        <router-link
+          class="button is-outlined is-info is-small"
+          :to="{ path: '/company/' + company.id }"
+        >
+          Edit Company
+        </router-link>
       </ul>
   </div>
 </template>
@@ -20,41 +23,30 @@
 import CompanyService from '../services/CompanyService'
 
 export default {
-    data() {
-      return {
-        currentEdit: 0,
+  data() {
+    return {
+      companies: [],
+      currentEditId: 0,
+    };
+  },
+  methods: {
+    toggleEdit(id) {
+      if (this.currentEditId === id) {
+        this.currentEditId = 0
+
+        return id === this.currentEditId
       }
+
+      this.currentEditId = id
+
+      return id === this.currentEditId
     },
-    methods: {
-      editable(id) {
-        // console.log(this.currentEdit)
-        return id === this.currentEdit
-      },
-      toggleEdit(id) {
-        this.currentEdit = id
-        return this.editable(this.currentEdit)
-      },
-    //   getCompanyById(id = 0) {
-    //     CompanyService.getById(id)
-    //     .then(data => {
-    //       this.uniqueCompany = data
-    //     })
-    //     return this.uniqueCompany
-    //   }
-     },
-    created() {
-      CompanyService.getAll()
-      .then(data => {
+  },
+  created() {
+    CompanyService.getAll()
+      .then((data) => {
         this.companies = data
       })
-    },
-    data() {
-      return {
-        companies: [],
-        uniqueCompany: {},
-        inMode: false,
-      }
-  }
+  },
 }
-
 </script>
